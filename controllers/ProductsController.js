@@ -17,13 +17,10 @@ exports.index = async (req, res) => {
 exports.update = async (req, res) => {
     const url = 'https://www.staples.ca/collections/macbooks-92';
     const products = await scrapeIt(url);
-    console.log(products)
     for (let product of products) {
-        if (product.title === "" || product.price === "") continue;
+        if (product.title === "") continue;
         await Product.updateOne({sku: product.sku}, product, {upsert: true});
     }
-
-    res.redirect('/products');
 };
 
 async function scrapeIt (url) {
@@ -78,6 +75,6 @@ async function scrapeIt (url) {
         }
         return products;
     })
-        await browser.close();
+    await browser.close();
     return content;
 }
