@@ -1,0 +1,17 @@
+<%- include ('../partials/header') %>
+<header class="home-cta">
+    <h1>Scraped STAPLES products</h1>
+</header>
+
+<div class="d-flex flex-wrap">
+    <% for (let product of products) { %>
+        <div class="card" style="width: 18rem;">
+            <img src="<%= product.image %>" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><%= product.title %></h5>
+                <p class="card-text">SKU: <%= product.sku %></p>
+            </div>
+        </div>
+    <% } %>
+</div>
+<%- include ('../partials/footer') %>
